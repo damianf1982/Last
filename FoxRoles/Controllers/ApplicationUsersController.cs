@@ -17,7 +17,7 @@ namespace FoxRoles.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ApplicationUsers
-        [Authorize(Roles = "Admin")]
+       
         public ActionResult Index()
         {
             return View(db.Users.ToList());

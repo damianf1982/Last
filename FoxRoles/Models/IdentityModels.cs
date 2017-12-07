@@ -34,7 +34,7 @@ namespace FoxRoles.Models
 
         public DbSet<GymSessions> gymsessions { get; set; }
         public DbSet<Bookings> booking { get; set; }
-        public DbSet<Profiles> profile { get; set; }
+        public DbSet<Profiles> profiles { get; set; }
 
         public static ApplicationDbContext Create()
         {

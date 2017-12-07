@@ -13,6 +13,7 @@ using FoxRoles.Models;
 
 namespace FoxRoles.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProfilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -20,7 +21,32 @@ namespace FoxRoles.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            return View(db.profile.ToList());
+            return View(db.profiles.ToList());
+        }
+
+        public ActionResult Notes()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Notes([Bind(Include = "Email")] Profiles profiles)
+        {
+            //if (Email == null)
+
+            string email = profiles.Email;
+            // Profiles profiles = db.profile.Find(email);
+            Profiles profile = db.profiles.Find(email);
+            string codedtext = profile.Notes;
+              string plaintext = Decrypt(codedtext);
+               profile.Notes = plaintext;
+              db.profiles.Add(profile);
+
+            //    //return View(db.booking.ToList().Where(x => x.User == currentUser));
+            //    return View(profiles);
+
+            return View(profiles);
         }
 
         // GET: Profiles/Details/5
@@ -30,7 +56,7 @@ namespace FoxRoles.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profiles profiles = db.profile.Find(id);
+            Profiles profiles = db.profiles.Find(id);
             if (profiles == null)
             {
                 return HttpNotFound();
@@ -40,11 +66,13 @@ namespace FoxRoles.Controllers
             string plaintext = Decrypt(xxx);
 
             profiles.Notes = plaintext;
-            db.profile.Add(profiles);
-            db.SaveChanges();
+            db.profiles.Add(profiles);
+            //db.SaveChanges();
 
             return View(profiles);
         }
+
+      
 
         //method to decrypt the string
         public string Decrypt(string cipherText)
@@ -109,7 +137,7 @@ namespace FoxRoles.Controllers
 
                string Encryptedstring = encrypt(notz);
                 profiles.Notes = Encryptedstring;
-                db.profile.Add(profiles);
+                db.profiles.Add(profiles);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -162,7 +190,7 @@ namespace FoxRoles.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profiles profiles = db.profile.Find(id);
+            Profiles profiles = db.profiles.Find(id);
             if (profiles == null)
             {
                 return HttpNotFound();
@@ -193,7 +221,7 @@ namespace FoxRoles.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profiles profiles = db.profile.Find(id);
+            Profiles profiles = db.profiles.Find(id);
             if (profiles == null)
             {
                 return HttpNotFound();
@@ -206,8 +234,8 @@ namespace FoxRoles.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Profiles profiles = db.profile.Find(id);
-            db.profile.Remove(profiles);
+            Profiles profiles = db.profiles.Find(id);
+            db.profiles.Remove(profiles);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
