@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FoxRoles.Models.GymSession>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+   
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GymSessionsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionHour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionWeek)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemainingSlots)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GymSessionsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionWeek)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingSlots)
+        </td>
+        <td>
+           
+        </td>
+    </tr>
+}
+
+</table>
