@@ -32,7 +32,33 @@ namespace FoxRoles.Controllers
             {
                 return HttpNotFound();
             }
+
+            string xxx = profiles.Notes;
+            string plaintext = DecryptString(xxx);
+
+            profiles.Notes = plaintext;
+            db.profile.Add(profiles);
+            db.SaveChanges();
+
             return View(profiles);
+        }
+
+
+        /// method to decrypt the string
+        public string DecryptString(string encrString)
+        {
+            byte[] b;
+            string decrypted;
+            try
+            {
+                b = Convert.FromBase64String(encrString);
+                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(b);
+            }
+            catch (FormatException fe)
+            {
+                decrypted = "";
+            }
+            return decrypted;
         }
 
         // GET: Profiles/Create
@@ -50,6 +76,11 @@ namespace FoxRoles.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                string notz = profiles.Notes;
+
+               string Encryptedstring = EnryptString(notz);
+                profiles.Notes = Encryptedstring;
                 db.profile.Add(profiles);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -57,6 +88,20 @@ namespace FoxRoles.Controllers
 
             return View(profiles);
         }
+
+
+        public string EnryptString(string strEncrypted)
+        {
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(strEncrypted);
+            string encrypted = Convert.ToBase64String(b);
+            return encrypted;
+        }
+
+        //public string Test(string word)
+        //{
+        //    string name = word; 
+        //    return name;
+        //}
 
         // GET: Profiles/Edit/5
         public ActionResult Edit(int? id)
