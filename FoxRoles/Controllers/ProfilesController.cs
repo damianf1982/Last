@@ -18,11 +18,12 @@ namespace FoxRoles.Controllers
     public class ProfilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private IEnumerable list;
+       // private IEnumerable list;
 
         // GET: Profiles
         public ActionResult Index()
-        {
+        {   
+            //Display a list of users who have profiles
             return View(db.profiles.ToList());
         }
 
@@ -62,27 +63,27 @@ namespace FoxRoles.Controllers
         }
 
         // GET: Profiles/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Profiles profiles = db.profiles.Find(id);
-            if (profiles == null)
-            {
-                return HttpNotFound();
-            }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Profiles profiles = db.profiles.Find(id);
+        //    if (profiles == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            string xxx = profiles.Notes;
-            string plaintext = Decrypt(xxx);
+        //    string xxx = profiles.Notes;
+        //    string plaintext = Decrypt(xxx);
 
-            profiles.Notes = plaintext;
-            db.profiles.Add(profiles);
-            //db.SaveChanges();
+        //    profiles.Notes = plaintext;
+        //    db.profiles.Add(profiles);
+        //    //db.SaveChanges();
 
-            return View(profiles);
-        }
+        //    return View(profiles);
+        //}
 
       
 
@@ -196,35 +197,35 @@ namespace FoxRoles.Controllers
         //}
 
         // GET: Profiles/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Profiles profiles = db.profiles.Find(id);
-            if (profiles == null)
-            {
-                return HttpNotFound();
-            }
-            return View(profiles);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Profiles profiles = db.profiles.Find(id);
+        //    if (profiles == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(profiles);
+        //}
 
         // POST: Profiles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,GymNumber,Notes")] Profiles profiles)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(profiles).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(profiles);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,Email,GymNumber,Notes")] Profiles profiles)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(profiles).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(profiles);
+        //}
 
         // GET: Profiles/Delete/5
         public ActionResult Delete(int? id)

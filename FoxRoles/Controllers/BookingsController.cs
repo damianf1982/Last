@@ -49,8 +49,8 @@ namespace Gymbo.Controllers
         public ActionResult Create()
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            //
-
+            //This takes the gym sessions from the database 
+            // sends it to the view to be displayed in a dropdown list
             List<GymSessions> list = db.gymsessions.ToList();
 
             ViewBag.GymSessionsList = new SelectList(list, "Id", "GymSessionName");
