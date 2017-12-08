@@ -44,12 +44,12 @@ namespace FoxRoles.Controllers
         {
             if (Id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("NotFound");
             }
             Profiles profiles = db.profiles.Find(Id);
             if (profiles == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound");
             }
 
             string xxx = profiles.Notes;

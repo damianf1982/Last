@@ -345,8 +345,6 @@
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\ApplicationUsers\Create.cshtml" />
     <Content Include="Views\ApplicationUsers\Delete.cshtml" />
-    <Content Include="Views\ApplicationUsers\Details.cshtml" />
-    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Views\Gym\Index.cshtml" />
     <Content Include="Views\GymSessions\Create.cshtml" />
@@ -361,6 +359,7 @@
     <Content Include="Views\Profiles\Delete.cshtml" />
     <Content Include="Views\Profiles\Index.cshtml" />
     <Content Include="Views\Profiles\Notes.cshtml" />
+    <Content Include="Views\Profiles\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
