@@ -21,20 +21,7 @@ namespace FoxRoles.Controllers
             return View(db.gymsessions.ToList());
         }
 
-        // GET: GymSessions/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    GymSessions gymSessions = db.gymsessions.Find(id);
-        //    if (gymSessions == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(gymSessions);
-        //}
+    
 
         // GET: GymSessions/Create
         [Authorize(Roles = "Admin")]
@@ -60,62 +47,34 @@ namespace FoxRoles.Controllers
             return View(gymSessions);
         }
 
-        // GET: GymSessions/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    GymSessions gymSessions = db.gymsessions.Find(id);
-        //    if (gymSessions == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(gymSessions);
-        //}
 
-        // POST: GymSessions/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,GymSessionName,RemainingPlaces")] GymSessions gymSessions)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(gymSessions).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(gymSessions);
-        //}
 
-        // GET: GymSessions/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    GymSessions gymSessions = db.gymsessions.Find(id);
-        //    if (gymSessions == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(gymSessions);
-        //}
 
-        // POST: GymSessions/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    GymSessions gymSessions = db.gymsessions.Find(id);
-        //    db.gymsessions.Remove(gymSessions);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        //GET: GymSessions/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GymSessions gymSessions = db.gymsessions.Find(id);
+            if (gymSessions == null)
+            {
+                return HttpNotFound();
+            }
+            return View(gymSessions);
+        }
+
+        //POST: GymSessions/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            GymSessions gymSessions = db.gymsessions.Find(id);
+            db.gymsessions.Remove(gymSessions);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
