@@ -49,7 +49,7 @@ namespace Gymbo.Controllers
         public ActionResult Create()
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            //maybe i don't need above line? 
+            //
 
             List<GymSessions> list = db.gymsessions.ToList();
 

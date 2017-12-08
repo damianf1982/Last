@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,6 +18,7 @@ namespace FoxRoles.Controllers
     public class ProfilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private IEnumerable list;
 
         // GET: Profiles
         public ActionResult Index()
@@ -26,25 +28,35 @@ namespace FoxRoles.Controllers
 
         public ActionResult Notes()
         {
+            //ApplicationDbContext db = new ApplicationDbContext();
+
+            ////List<Profiles> list = db.profiles.ToList();
+            //List<Profiles> list = db.profiles.ToList();
+
+            //ViewBag.EmailsList = new SelectList(list, "Id", "Email");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Notes([Bind(Include = "Email")] Profiles profiles)
+        public ActionResult Notes(int ? Id)
         {
-            //if (Email == null)
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Profiles profiles = db.profiles.Find(Id);
+            if (profiles == null)
+            {
+                return HttpNotFound();
+            }
 
-            string email = profiles.Email;
-            // Profiles profiles = db.profile.Find(email);
-            Profiles profile = db.profiles.Find(email);
-            string codedtext = profile.Notes;
-              string plaintext = Decrypt(codedtext);
-               profile.Notes = plaintext;
-              db.profiles.Add(profile);
+            string xxx = profiles.Notes;
+            string plaintext = Decrypt(xxx);
 
-            //    //return View(db.booking.ToList().Where(x => x.User == currentUser));
-            //    return View(profiles);
+            profiles.Notes = plaintext;
+            db.profiles.Add(profiles);
+            //db.SaveChanges();
 
             return View(profiles);
         }
