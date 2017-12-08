@@ -39,6 +39,7 @@ namespace FoxRoles.Controllers
         {
             if (ModelState.IsValid)
             {
+               // return View(gymSessions);
                 db.gymsessions.Add(gymSessions);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -51,6 +52,7 @@ namespace FoxRoles.Controllers
 
 
         //GET: GymSessions/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -68,6 +70,7 @@ namespace FoxRoles.Controllers
         //POST: GymSessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             GymSessions gymSessions = db.gymsessions.Find(id);

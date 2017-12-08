@@ -30,17 +30,25 @@
 
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GymSessionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemainingPlaces)
+                </td>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
                     <td>
-                        @Html.DisplayFor(modelItem => item.GymSessionName)
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RemainingPlaces)
-                    </td>
-                    <td>
-                            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-                        </td>
-                </tr>
+                    }
+                }
+
+                    </tr>
             }
 
         </table>
