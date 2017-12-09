@@ -292,6 +292,8 @@
     <Content Include="Models\Gym.edmx.diagram">
       <DependentUpon>Gym.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\GymAppDamo - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\GymAppDamo - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

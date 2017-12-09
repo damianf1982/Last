@@ -127,32 +127,13 @@ namespace FoxRoles.Controllers
         //[ValidateAntiForgeryToken]
         //public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
-
-        //    // The following code protects for brute force attacks against the two factor codes. 
-        //    // If a user enters incorrect codes for a specified amount of time then the user account 
-        //    // will be locked out for a specified amount of time. 
-        //    // You can configure the account lockout settings in IdentityConfig
-        //    var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
-        //    switch (result)
-        //    {
-        //        case SignInStatus.Success:
-        //            return RedirectToLocal(model.ReturnUrl);
-        //        case SignInStatus.LockedOut:
-        //            return View("Lockout");
-        //        case SignInStatus.Failure:
-        //        default:
-        //            ModelState.AddModelError("", "Invalid code.");
-        //            return View(model);
+        //  
         //    }
         //}
 
         //
         // GET: /Account/Register
-        [Authorize(Roles = "Admin")]
+        [Authorize (Roles = "Admin")]
         public ActionResult Register()
         {
             List<SelectListItem> list = new List<SelectListItem>();
